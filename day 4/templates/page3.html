@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page2</title>
+</head>
+<body>
+    <a href="/"> Home</a>
+    <a href="/page1"> Page 1</a>
+   <a href="/page3"> Page 3</a>
+   
+    <h1>Welcome Admin</h1>
+
+    {{ data }}
+
+    {% for i in data %} 
+    <p> {{ i.artist_user_id }} </p>
+    <form action="/admin_dashbord"  method="post">
+        <input type="text" name='id' value= {{ i.artist_user_id }} hidden>
+        <input type="radio" name="status" value="T">
+        <label>Approve</label>
+        <input type="radio" name="status" value="F">
+        <label>Decline</label>
+        <input type="submit">
+
+    </form>
+ 
+    {% endfor %}
+</body>
+</html>

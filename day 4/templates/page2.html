@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page2</title>
+</head>
+<body>
+    <a href="/"> Home</a>
+    <a href="/page1"> Page 1</a>
+   <a href="/page3"> Page 3</a>
+   
+    <h1>Welcome {{ username.username }}</h1>
+
+    <h1>UPLOAD NEW SONG</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="artist_id" value={{username.id}} hidden>
+        <input type="text" name="Name" placeholder="Enter Song Name" required>
+        <select name="Genre" required>
+            <option value="" disabled selected>Select Genre</option>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Hip-Hop">Hip-Hop</option>
+            <option value="Classical">Classical</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Country">Country</option>
+            <option value="Reggae">Reggae</option>
+            <option value="Blues">Blues</option>
+            <option value="Folk">Folk</option>
+        </select>
+        <input type="file" name="file" required>
+        <input type="submit" >
+    </form>
+
+
+
+    <h1> YOUR SONGS</h1>
+    <Pre > TITLE   LIKES    DISLIKES  GENRE </Pre>
+    {{ artistData.song_list }}
+    {% for songs in artistData.song_list %}
+    <pre>{{ songs.title}}       {{ songs.likes}}        {{ songs.dislikes}}       {{ songs.genre}}</pre> 
+    <form action="/delete" method="post">
+        <input type="number" name='sID' value={{songs.id}} hidden>
+        <input type="number" name='aID' value={{username.id}} hidden>
+        <input type="submit" value="Delete Song">
+    </form>
+    {% endfor %}
+
+</body>
+</html>
